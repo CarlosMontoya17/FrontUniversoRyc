@@ -1,0 +1,81 @@
+<div class="main-content">
+    <div class="card">
+        <div class="card-header">
+          <h4>Prospectos Linea 4</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <div class="test-header">
+              <label style="color: white;">
+                <input  checked
+                  type="radio"
+                  name="filter"
+                  id="everyone"
+                  (change)="externalFilterChanged('todos')"
+                />
+                Todos
+              </label>
+              <label style="color: white;">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="between25and50"
+                  (change)="externalFilterChanged('si')"
+                />
+                Aplican
+              </label>
+              <label style="color: white;">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="below25"
+                  (change)="externalFilterChanged('siperono')"
+                />
+                No aplican pero tienen credito Infonavit
+              </label>
+              <label style="color: white;">
+                <input
+                  type="radio"
+                  name="filter"
+                  id="above50"
+                  (change)="externalFilterChanged('no')"
+                />
+                No aplican
+              </label>
+            </div>
+            <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-alpine" 
+            #agGrid
+            [pagination]="true"
+            [rowData]="rowData"
+            rowSelection="multiple"
+            [defaultColDef]="defaultColDef"
+            [defaultColGroupDef]="defaultColGroupDef"
+            [animateRows]="true"
+            [columnHoverHighlight]="true"
+            [localeText]="localeText"
+            [sortingOrder]="sortingOrder"
+            (gridReady)="onGridReady($event)"
+              [columnDefs]="columnDefs">
+            </ag-grid-angular>
+          </div>
+        </div>
+        <!-- <div class="card-footer text-right">
+          <nav class="d-inline-block">
+            <ul class="pagination mb-0">
+              <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1"><i class="fas fa-chevron-left"></i></a>
+              </li>
+              <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+              <li class="page-item">
+                <a class="page-link" href="#">2</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="#"><i class="fas fa-chevron-right"></i></a>
+              </li>
+            </ul>
+          </nav>
+        </div> -->
+      </div>
+</div>
+

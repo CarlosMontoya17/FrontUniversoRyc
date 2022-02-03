@@ -1,0 +1,64 @@
+<div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+                <section class="section">
+            <div class="section-header">
+              <nav aria-label="Page navigation example">
+                <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                    <a type="button" href="/inicio" class="btn btn-danger">Atras</a>
+                </div>
+              </nav>
+            </div>
+          </section>
+    <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h4>Derechohabientes Veracruz</h4>
+            </div>
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">No </th>
+                      <th scope="col">Nombre </th>
+                      <th scope="col">Curp</th>
+                      <th scope="col">Dirección</th>
+                      <th scope="col">Link de Google Maps</th>
+                      <th scope="col">Referencias</th>
+                      <th scope="col">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let prospecto of registers; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{prospecto.nombre}}</td>
+                      <td>{{prospecto.curp}}</td>
+                      <td>
+                        {{resultDirecciones[prospecto.id]}}
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Agregar  link de la dirección</label>
+                          <input  [(ngModel)]="links[prospecto.id]" type="url" class="form-control">
+                        </div>
+                      </td>
+                      <td>
+                        <div class="form-group">
+                          <label>Comentario</label>
+                          <textarea [(ngModel)]="comentarios[prospecto.id]" class="form-control"></textarea>
+                        </div>
+                      </td>
+                      <td>
+                        <a style="cursor: pointer; color: white;"  (click)="enviarDatos(prospecto.id, links[prospecto.id], comentarios[prospecto.id], i)" class="btn btn-success">Guardar</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            
+          </div>
+        </div>
+      </div>
+</div>
+</div>

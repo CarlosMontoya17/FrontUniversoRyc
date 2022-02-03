@@ -1,0 +1,66 @@
+<div id="app">
+  <div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <section class="section">
+        <div class="section-header">
+          <div class="btn-group btn-group-lg" role="group" aria-label="Basic example" *ngIf="componente=='derechohabientes'">
+            <button type="button" (click)="cambiarsubComponente('home')" class="btn btn-danger">Atras</button>
+          </div>
+          <nav aria-label="Page navigation example" *ngIf="componente=='home'">
+            <ul class="pagination pagination-lg">
+              <li class="page-item">
+                <h1>¡ {{tiempoActual}}, {{result.username}} !</h1>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="row" *ngIf="componente=='home'">
+          <div class="col-12 mb-4">
+            <div class="hero text-white hero-bg-image hero-bg-parallax"
+                 style="background-image: url(assets/img/unsplash/fondo2.jpg); background-repeat: round;">
+              <div class="hero-inner">
+                <h2>Tienes nuevas cotizaciones!</h2>
+                <p class="lead">En esta seccion podras ver los derechohabientes a cotizar</p>
+                <div class="mt-4">
+                  <button type="button" class="btn-group btn-group-lg" (click)="cambiarsubComponente('derechohabientes')" class="btn btn-danger"><i class="far fa-user"></i>Cotizar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="componente=='derechohabientes'">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>Derechohabientes</h4>
+              </div>
+              <div class="card-body">
+                <table class="table table-hover">
+                  <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Curp</th>
+                    <th scope="col">NSS</th>
+                    <th scope="col">Fecha de nacimiento</th>
+                    <th>Acción</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Jonatan</td>
+                    <td>AUFJ950819HCSGLN01</td>
+                    <td>123548812211</td>
+                    <td>19/08/1995</td>
+                      <td><a href="#" class="btn btn-primary">Cotizar</a></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

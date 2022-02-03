@@ -1,0 +1,61 @@
+
+<div id="app">
+    <section class="section">
+      <div class="d-flex flex-wrap align-items-stretch">
+        <div class="col-lg-4 col-md-6 col-12 order-lg-1 min-vh-100 order-2 bg-white">
+          <div class="p-4 m-3">
+            <img src="../assets/img/logoRyc.png" alt="logo" width="150">
+            <h4 class="text-dark font-weight-normal">Bienvenido a <span class="font-weight-bold">Grupo Ryc</span></h4>
+            <p class="text-muted">Para entrar a nuestro sistema, debe tener una cuenta registrada</p>
+            <form class="needs-validation" novalidate="">
+              <div class="form-group">
+                <label for="username">Usuario</label>
+                <input id="username" type="text" class="form-control" name="username" [(ngModel)]="username" tabindex="1" required autofocus>
+                <div id="usernameDiv" class="invalid-feedback">
+                  Por favor ingrese su nombre de usuario
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="d-block">
+                  <label for="password" class="control-label">Contraseña</label>
+                </div>
+                <input id="password" type="password" class="form-control" name="password" [(ngModel)]="password" tabindex="2" required autofocus>
+                <div id="passDiv" class="invalid-feedback">
+                  Por favor ingrese  su contraseña
+                </div>
+              </div>
+
+              <div class="form-group text-right">
+                <a target="_blank" href="recuperar-password" class="float-left mt-3">
+                  Olvidaste tu contraseña?
+                </a>
+                <button type="submit" (click)="validarLogin(username, password)" class="btn btn-primary btn-lg btn-icon icon-right" tabindex="4">
+                  Iniciar Sesión
+                </button>
+              </div>
+            </form>
+
+            <div class="text-center mt-5 text-small">
+              Copyright &copy;. Hecho por Grupo Ryc
+              <div class="mt-2">
+                <a target="_blank" href="/politicasdeprivacidad">Politicas de privacidad</a>
+                <div class="bullet"></div>
+                <a target="_blank" href="/terminos-y-condiciones">Terminos y condiciones</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8 col-12 order-lg-2 order-1 min-vh-100 background-walk-y position-relative overlay-gradient-bottom" data-background="../assets/img/unsplash/pexels8.jpg">
+          <div class="absolute-bottom-left index-2">
+            <div class="text-light p-5 pb-2">
+              <div class="mb-5 pb-3">
+                <h1 class="mb-2 display-4 font-weight-bold">Sueña, crea, remodela</h1>
+                <h5 class="font-weight-normal text-muted-transparent">Grupo Ryc - Remodelaciones y Construcción</h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  

@@ -1,0 +1,211 @@
+<div id="app">
+  <div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content" *ngIf="componente=='inicio'">
+      <section class="section">
+        <div class="section-header">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-lg">
+              <li class="page-item">
+                <h1>¡ {{tiempoActual}}, {{result.username}} !</h1>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </section>
+<!--       <div class="row" *ngIf="result.rol=='Capturista'">
+        <div class="col-12 mb-4">
+          <div class="hero text-white hero-bg-image hero-bg-parallax"
+               style="background-image: url(assets/img/unsplash/fondo3.jpg); background-repeat: round;">
+            <div class="hero-inner">
+              <h2>¡Tienes nuevas cotizaciones!</h2>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Director'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/capturista.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Capturistas</h2>
+              </div>
+              <p>En esta sección se asignan derechohabientes a los capturistas.</p>
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    (click)="cambiarComponente('capturista')">Ir al modulo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Director'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/prospecto.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Prospectos</h2>
+              </div>
+              <p>Sección para visualizar los prospectos de las cotizaciones realizadas automaticamente. </p>
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    (click)="cambiarComponente('prospecto')">Ir al módulo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Director'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/cartas.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Cartas</h2>
+              </div>
+              <p>Sección para obtener cartas de clientes precalificados.</p>
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    (click)="cambiarComponente('cartas')">Ir al modulo</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <!-- <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Capturista'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/cotizacion.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Cotizador Chiapas</h2>
+              </div>
+              <p>Cotizador para derechohabientes de municipios de Chiapas</p>
+
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    href="/cotizador">Ir al módulo</a>
+                </div>
+              </div>
+
+            </div>
+          </article>
+        </div> -->
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Capturista'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/cotizadorMonterrey.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Cotizador Monterrey</h2>
+              </div>
+              <p>Cotizador para derechohabientes de municipios de Monterrey</p>
+
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    href="/cotizadorNL">Ir al módulo</a>
+                </div>
+              </div>
+
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Capturista'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/fondo4.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Cotizador Veracruz</h2>
+              </div>
+              <p>Cotizador para derechohabientes de municipios de Monterrey</p>
+
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    href="/cotizadorVr">Ir al módulo</a>
+                </div>
+              </div>
+
+            </div>
+          </article>
+        </div>
+        <div class="col-12 col-md-4 col-lg-4" *ngIf="result.rol=='Director'">
+          <article class="article article-style-c">
+            <div class="article-header">
+              <div class="article-image" style="background-image: url('assets/img/news/resultado1.jpg');">
+              </div>
+            </div>
+            <div class="article-details">
+              <div class="article-title text-center">
+                <h2>Resultados</h2>
+              </div>
+              <p>Derechohabientes cotizados y con links de Google Maps</p>
+
+              <div class="article-details">
+                <div class="article-cta">
+                  <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                    href="/resultados">Ir al módulo</a>
+                </div>
+              </div>
+
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="componente!='inicio'">
+      <div class="main-wrapper">
+        <div class="main-content">
+          <section class="section">
+            <div class="section-header">
+              <nav aria-label="Page navigation example">
+                <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                    <button type="button" (click)="cambiarComponente('inicio')" class="btn btn-danger">Atras</button>
+                </div>
+              </nav>
+            </div>
+          </section>
+        </div>
+      </div>
+      <container-element [ngSwitch]="componente">
+        <div *ngSwitchCase="'capturista'"><app-capturistas></app-capturistas> </div>
+        <div *ngSwitchCase="'prospecto'"><app-prospectos></app-prospectos> </div>
+        <div *ngSwitchCase="'cartas'"><app-cartas></app-cartas> </div>
+      </container-element>
+    </div>
+
+    <footer class="main-footer">
+      <div class="footer-left col-md-6">
+        Copyright &copy; 2021 <div class="bullet"></div> Grupo Ryc
+      </div>
+      <div class="footer-right col-md-3">
+        2.3.0
+      </div>
+
+      <div class="col-md-12">
+        Distribuido por <a target="_blank" href="https://gruporyc.com.mx">Grupo Ryc</a>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+<div id="app">
+  <div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <section class="section">
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>Calendario de Horarios</h4>
+                <div class="col">
+                  <div class="card-footer text-right">
+                    <a class="btn btn-primary" style="cursor: pointer; color: white; margin: 1rem;" (click)="cambiarVista(3)">Calendario</a>
+                    <a class="btn btn-primary" style="cursor: pointer; color: white; margin: 1rem;" (click)="cambiarVista(1)">Generar reporte empleado</a>
+                    <a class="btn btn-primary" style="cursor: pointer; color: white; margin: 1rem;" (click)="cambiarVista(2)">Generar reporte completo</a>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body p-0" *ngIf="vista==3"> 
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="tabla">
+                    <tr>
+                      <th>
+                      </th>
+                      <th>Nombre</th>
+                      <th>Rol</th>
+                      <th>Dias trabajados</th>
+                      <th>Retardos</th>
+                      <th>Accion</th>
+                    </tr>
+                    <tr *ngFor="let user of users">
+                      <td class="p-0 text-center" style="background-color: #D4E6F1;">
+                        <img alt="image" src={{user.avatar}} class="rounded-circle" width="35"
+                          data-toggle="tooltip">
+                      </td>
+                      <td style="color: black; font-size: medium; text-align: center; background-color: #EAF2F8;">{{user.nombre}}</td>
+                      <td style="color: black; font-size: medium; text-align: center; background-color: #EAF2F8">{{user.rol}}</td>
+                      <td style="background-color: #EAF2F8; ">
+                        <input type="text" [(ngModel)]="diaslaborados[user.id]" placeholder="Maximo 13 dias= 15 dias" class="form-control">
+                      </td>
+                      <td  style="background-color: #EAF2F8;">
+                        <input type="text" [(ngModel)]="retardos[user.id]" class="form-control">
+                      </td>
+                      <td style="background-color: #EAF2F8;  text-align: center;">
+                        <div class="row">
+                          <div class="buttons">
+                            <button type="button" class="btn btn-warning" (click)="editAsistencias(user.id, diaslaborados[user.id], retardos[user.id])">Guardar cambios</button>&nbsp;
+                            <a data-toggle="modal" data-target="#exampleModal" class="btn btn-primary" style="cursor: pointer; color: white;" 
+                            (click)="getCalendarUser(user.id)">Ver calendario</a>  
+                          </div>
+                        </div>                  
+                    </tr>
+                    
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Modal -->
+      <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+            </div>
+            <div class="content" >
+              <full-calendar [options]='calendarOptions'></full-calendar>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body p-0" *ngIf="vista==1">
+        <div class="card-header">
+          <a class="btn btn-primary" style="cursor: pointer; color: white;" (click)="downloadPDFEmpleado()">Descargar reporte</a>
+        </div>
+        <div class="table-responsive" id="htmlData">
+          <table class="table table-bordered" id="tablaEmpleado">
+            <tr>
+              <th>Nombre</th>
+              <th>Días laborados</th>
+              <th>Faltas</th>
+              <th>Retardos</th>
+              <th>Vacaciones</th>
+              <th>Firma</th>
+            </tr>
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: 16, currentPage: p }">
+              <td style="color: black; font-size: large; text-align: center;" >{{user.nombre}}</td>
+              <td style="background-color: #85C1E9; color: black; font-size:large; text-align: center;">{{diasLaborales[user.id]}}</td>
+              <td style="background-color: #F1948A; font-size: large; color: black; text-align: center;">{{15-diasLaborales[user.id] + diasRetardo[user.id]}}</td>
+              <td style="background-color: #F8C471; font-size: large; color: black; text-align: center;">{{user.retardos}}</td>
+              <td  style="background-color: #5499C7; font-size: large; color: black; text-align: center;">0</td>
+              <td style="background-color:#76D7C4;"></td>
+            </tr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </table>
+        </div>
+      </div>
+      <div class="card-body p-0" *ngIf="vista==2">
+        <div class="card-header">
+          <a class="btn btn-primary" style="cursor: pointer; color: white;" (click)="downloadPDFull()">Descargar reporte</a>
+        </div>
+        <div class="table-responsive" id="htmlDataFull">
+          <table class="table table-bordered" id="tablaFull">
+            <tr>
+              <th>Nombre</th>
+              <th>Dias laborados</th>
+              <th>Faltas normales</th>
+              <th>Faltas con retardos</th>
+              <th>Retardos</th>
+              <th>Salario diario</th>
+              <th>Bono</th>
+              <th>Pago quincenal</th>
+              <!-- <th>Pago quincenal con bono</th> -->
+            </tr>
+            <tr *ngFor="let user of users | paginate: { itemsPerPage: 16, currentPage: p }">
+              <td style="color: black; font-size: large; text-align: center;">{{user.nombre}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color:#76D7C4  ;">{{diasLaborales[user.id] - diasRetardo[user.id]}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #F1948A;">{{15-diasLaborales[user.id]}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #bbdb46;">{{diasRetardo[user.id]}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #F8C471;">{{user.retardos}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #82E0AA;">{{user.salario | number : '1.2-2'}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #5499C7;">{{bono[user.id]}}</td>
+              <td style="color: black; font-size: large; text-align: center; background-color: #F4D03F;">{{(diasLaborales[user.id]*user.salario + bono[user.id] / 15 * diasLaborales[user.id])-(diasRetardo[user.id] *user.salario)  | number : '1.2-2'}}</td>
+              <!-- <td style="color: black; font-size: large; text-align: center; background-color: #F4D03F;">{{diasLaborales[user.id]*user.salario | number : '1.2-2'}}</td> -->
+              <!-- <td style="color: black; font-size: large; text-align: center; background-color: #D4E6F1 ;">{{diasLaborales[user.id]*user.salario + bono[user.id] | number : '1.2-2'}}</td> -->
+            </tr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+<div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <section class="section">
+        <div class="section-header">
+          <nav aria-label="Page navigation example">
+            <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+                <a type="button" href="/inicio" class="btn btn-danger">Atras</a>
+            </div>
+          </nav>
+        </div>
+        <div class="section-body">
+          <div class="col-12 col-sm-12 col-lg-12">
+            <div class="card">
+              <div class="card-header">
+                <h4>Estados</h4>
+              </div>
+              <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab5" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="home-tab5" data-toggle="tab" href="#home5" role="tab" aria-controls="home" aria-selected="true">
+                      <i class="fas fa-home"></i> Chiapas</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="profile-tab5" data-toggle="tab" href="#profile5" role="tab" aria-controls="profile" aria-selected="false">
+                      <i class="fas fa-id-card"></i> Veracruz</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="contact-tab5" data-toggle="tab" href="#contact5" role="tab" aria-controls="contact" aria-selected="false">
+                      <i class="fas fa-mail-bulk"></i> Nuevo Leon</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="myTabContent5">
+                  <div class="tab-pane fade show active" id="home5" role="tabpanel" aria-labelledby="home-tab5">
+                    <div class="table-responsive">
+                      <table class="table table-sm" >
+                        <thead>
+                          <tr>
+                            <th scope="col">No </th>
+                            <th scope="col">Nombre </th>
+                            <th scope="col">Curp</th>
+                            <th scope="col">Dirección</th>
+                            <th scope="col">Link de Google Maps</th>
+                            <th scope="col">Referencias</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td>Ejemplo</td>
+                            <td>AUFJ964982HCSGLN01</td>
+                            <td>@Calle concordia</td>
+                            <td>https://google.com.mx</td>
+                            <td>Comentario 1</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="profile5" role="tabpanel" aria-labelledby="profile-tab5">
+                    <div class="tab-pane fade show active" id="home5" role="tabpanel" aria-labelledby="home-tab5">
+                      <div class="table-responsive">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col">Nombre </th>
+                              <th scope="col">Curp</th>
+                              <th scope="col">Dirección</th>
+                              <th scope="col">Link de Google Maps</th>
+                              <th scope="col">Referencias</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let result of resultadosVr | paginate: { itemsPerPage: 50, currentPage: p }">
+                              <td>{{result.nombre}}</td>
+                              <td>{{result.curp}}</td>
+                              <td>{{resultDireccionesVr[result.id]}}</td>
+                              <td><a target="_blank" href="{{result.direccion}}">{{result.direccion}}</a></td>
+                              <td>{{result.anotacion}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="contact5" role="tabpanel" aria-labelledby="contact-tab5">
+                    <div class="tab-pane fade show active" id="home5" role="tabpanel" aria-labelledby="home-tab5">
+                      <div class="table-responsive">
+                        <table class="table table-sm">
+                          <thead>
+                            <tr>
+                              <th scope="col">Nombre </th>
+                              <th scope="col">Curp</th>
+                              <th scope="col">Dirección</th>
+                              <th scope="col">Link de Google Maps</th>
+                              <th scope="col">Referencias</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let result of resultados | paginate: { itemsPerPage: 50, currentPage: p }">
+                              
+                              <td>{{result.nombre}}</td>
+                              <td>{{result.curp}}</td>
+                              <td> {{resultDirecciones[result.id]}}</td>
+                              <td><a target="_blank" href="{{result.direccion}}">{{result.direccion}}</a></td>
+                              <td>{{result.anotacion}}</td>
+                            </tr>
+                          </tbody>
+                          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+</div>

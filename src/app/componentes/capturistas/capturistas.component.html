@@ -1,0 +1,149 @@
+<div class="main-content">
+  <div class="row" *ngIf="componente=='asignacion'">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;">Asignacion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" style="cursor: pointer;" (click)="cambiarsubComponente('rendimiento')">Rendimiento</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tr>
+                <th>Capturista</th>
+                <th>Base de datos</th>
+                <th>Cantidad de registros a asignar</th>
+                <th>Acción</th>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <img alt="image" src={{result.avatar}} class="rounded-circle" width="35" data-toggle="tooltip" title="Nur Alpiana">
+                        </div>
+                      </div>
+                      <select class="form-control" name="select" [(ngModel)]="capturistaSeleccionado">
+                        <option selected hidden>Seleccionar</option>
+                        <option *ngFor="let capturista of dataCapturistas">{{capturista.username}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fas fa-database"></i>
+                        </div>
+                      </div>
+                      <select class="form-control" [(ngModel)]="bd">
+                        <option>IMSS 2018</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <i class="fas fa-users"></i>
+                        </div>
+                      </div>
+                      <input type="number" min="1" class="form-control" placeholder="Ingresa una cantidad" [(ngModel)]="cantidadRegistros">
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <a href="#" class="btn btn-success" (click)="asignar()">Asignar</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="componente=='rendimiento'">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-pills">
+            <li class="nav-item">
+              <a class="nav-link " style="cursor: pointer;" (click)="cambiarsubComponente('asignacion')">Asignacion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" style="cursor: pointer;">Rendimiento</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <tr>
+                <th>Capturista</th>
+                <th>Acción</th>
+              </tr>
+              <tr>
+                <td>
+                  <div class="form-group">
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">
+                          <img alt="image" src="../assets/img/avatar/avatar-1.png" class="rounded-circle" width="35"
+                            data-toggle="tooltip" title="Nur Alpiana">
+                        </div>
+                      </div>
+                      <select class="form-control" [(ngModel)]="capturistaSeleccionado">
+                        <option selected hidden>Seleccionar</option>
+                        <option *ngFor="let capturista of dataCapturistas">{{capturista.username}}</option>
+                      </select>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <a href="#" class="btn btn-success" (click)="getRegistersDataPerCapturist()">Ver rendimiento</a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+            <div class="card">
+              <div class="card-body">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Cantidad asignada</th>
+                      <th scope="col">Precalificados</th>
+                      <th scope="col">Restantes</th>
+                      <th scope="col">Progeso (%)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let rend of rendCapturista; index as i">
+                      <th scope="row"> {{rend.cantAsignado}}</th>
+                      <td>{{rend.hechos}}</td>
+                      <td>{{rend.cantAsignado - rend.hechos}}</td>
+                      <td>{{100/rend.cantAsignado*rend.hechos}}%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<div id="app">
+  <div class="main-wrapper">
+    <div class="navbar-bg" style="background-color: rgb(210 52 56);"></div>
+      <nav class="navbar navbar-expand-lg main-navbar" style="background-color: rgb(210 52 56);">
+        <form class="form-inline mr-auto">
+          <ul class="navbar-nav mr-3">
+            <li><a data-toggle="sidebar" class="nav-link nav-link-lg"><i style="cursor: pointer; color: white;" class="fas fa-bars"></i></a></li>
+          </ul>
+          <div class="search-element">
+          </div>
+        </form>
+        <ul class="navbar-nav navbar-right">
+          <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+              class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
+            <div class="dropdown-menu dropdown-list dropdown-menu-right">
+              <div class="dropdown-header">Notificaciones
+                <div class="float-right">
+                  <a href="#">Marcas todas como leídas.</a>
+                </div>
+              </div>
+              <div class="dropdown-list-content dropdown-list-icons">
+                <a href="#" class="dropdown-item dropdown-item-unread">
+                  <div class="dropdown-item-icon bg-primary text-white">
+                    <i class="fas fa-code"></i>
+                  </div>
+                  <div class="dropdown-item-desc">
+                    Template update is available now!
+                    <div class="time text-primary">2 Min Ago</div>
+                  </div>
+                </a>
+                <a href="#" class="dropdown-item">
+                  <div class="dropdown-item-icon bg-info text-white">
+                    <i class="far fa-user"></i>
+                  </div>
+                  <div class="dropdown-item-desc">
+                    <b>You</b> and <b>Dedik Sugiharto</b> are now friends
+                    <div class="time">10 Hours Ago</div>
+                  </div>
+                </a>
+              </div>
+              <div class="dropdown-footer text-center">
+                <a href="#">Ver todas <i class="fas fa-chevron-right"></i></a>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown"><a href="#" data-toggle="dropdown"
+              class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+              <img alt="image" src={{result.avatar}} class="rounded-circle mr-1">
+              <div class="d-sm-none d-lg-inline-block">{{result.username}}</div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <div class="dropdown-title">Hace 5 minutos</div>
+              <a href="/perfil" class="dropdown-item has-icon">
+                <i class="far fa-user"></i> Perfil
+              </a>
+              <a href="features-settings.html" class="dropdown-item has-icon">
+                <i class="fas fa-cog"></i> Configuracion
+              </a>
+              <div class="dropdown-divider"></div>
+              <a style="cursor: pointer;" (click)="logout()" class="dropdown-item has-icon text-danger">
+                <i class="fas fa-sign-out-alt"></i> Cerrar sesión
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    <div class="main-sidebar">
+      <aside id="sidebar-wrapper">
+        <div class="sidebar-brand">
+          <a >Grupo Ryc</a>
+        </div>
+        <div class="sidebar-brand sidebar-brand-sm">
+          <a >GR</a>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="menu-header">Dashboard</li>
+          <li class="nav-item dropdown active">
+            <a href="/inicio" class="nav-link"><i class="fab fa-gofore"><i class="fas fa-registered"></i></i><span>Inicio</span></a>
+          </li>
+          <li class="menu-header" *ngIf="result.rol=='Director'">Sección</li>
+          <li class="nav-item dropdown" *ngIf="result.rol=='Director'">
+            <a class="nav-link has-dropdown" style="cursor: pointer;"><i class="fas fa-database"></i><span>Base de datos</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/tablaFull" class="nav-link" >Tabla concentrada</a></li>
+              <li><a href="/tablaFull" class="nav-link" >Tabla depurada</a></li>
+            </ul>
+          </li>
+          <li class="menu-header" *ngIf="result.rol=='Operaciones' || result.rol=='Director'">Sección</li>
+          <li class="nav-item dropdown" *ngIf="result.rol=='Operaciones' || result.rol=='Director'">
+            <a  class="nav-link has-dropdown" style="cursor: pointer;"><i class="far fa-user"></i> <span>Administrativo</span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/calendario" class="nav-link" >Calendario y asistencia</a></li>
+            </ul>
+          </li>
+          <li class="menu-header">Sección</li>
+          <li class="nav-item dropdown">
+            <a href="http://localhost:4300/?name={{url}}" target="_blank" class="nav-link"><i class="fas fa-clipboard-list"></i><span>CRM</span></a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</div>

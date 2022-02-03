@@ -1,0 +1,82 @@
+<div id="app">
+    <div class="main-wrapper">
+        <app-sidebar></app-sidebar>
+        <div class="main-content">
+            <section class="section">
+                <div class="section-header">
+                  <h1>Perfil</h1>
+                  <div class="section-header-breadcrumb">
+                    <div class="breadcrumb-item active"><a href="/inicio">Inicio</a></div>
+                    <div class="breadcrumb-item">Perfil</div>
+                  </div>
+                </div>
+                <div class="section-body">
+                  <h2 class="section-title">Hola, {{result.username}}</h2>
+                  <p class="section-lead">
+                    Cambia tu información en esta página.
+                  </p>
+      
+                  <div class="row mt-sm-4">
+                    <div class="col-12 col-md-12 col-lg-5">
+                      <div class="card profile-widget">
+                        <div class="profile-widget-header">
+                          <img alt="image" src={{result.avatar}} class="rounded-circle profile-widget-picture">
+                          <div class="profile-widget-items">
+                            <div class="profile-widget-item">
+                              <div class="profile-widget-item-label">Retardos</div>
+                              <div class="profile-widget-item-value">1</div>
+                            </div>
+                            <div class="profile-widget-item">
+                              <div class="profile-widget-item-label">Faltas</div>
+                              <div class="profile-widget-item-value">1</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="profile-widget-description">
+                          <div class="profile-widget-name">{{result.username}} <div class="text-muted d-inline font-weight-normal"><div class="slash"></div> {{result.rol}}</div></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-12 col-lg-7">
+                      <div class="card">
+                        <form method="post" class="needs-validation" novalidate="">
+                          <div class="card-header">
+                            <h4>Cambiar contraseña</h4>
+                          </div>
+                          <div class="card-body">
+                              <div class="row">
+                                <div class="form-group col-md-6 col-12">
+                                  <label>Contraseña anterior</label>
+                                  <input type="text" class="form-control" value="" required="">
+                                  <div class="invalid-feedback">
+                                    Ingrese la contraseña anterior
+                                  </div>
+                                  <label>Numero telefonico</label>
+                                  <input type="text" class="form-control" value="" required="">
+                                </div>
+                                <div class="form-group col-md-6 col-12">
+                                    <label>Nueva contraseña</label>
+                                    <input type="text" class="form-control" value="" required="">
+                                    <div class="invalid-feedback">
+                                      Ingrese una contraseña
+                                    </div>
+                                  <label>Confirme la contraseña</label>
+                                  <input type="text" class="form-control" value="" required="">
+                                  <div class="invalid-feedback">
+                                    Contraseña incorrecta
+                                  </div>
+                                </div>
+                              </div>
+                          </div>
+                          <div class="card-footer text-right">
+                            <button class="btn btn-primary">Guardar cambios</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+        </div>
+    </div>
+</div>
