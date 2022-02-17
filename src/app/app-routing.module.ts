@@ -14,6 +14,7 @@ import { CotizadorComponent } from "./componentes/cotizador/cotizador.component"
 import { ResultadosComponent } from "./componentes/resultados/resultados.component";
 import { CotizadorNlComponent } from './componentes/cotizador-nl/cotizador-nl.component';
 import { VeracruzComponent } from './componentes/veracruz/veracruz.component';
+import { TableIneChComponent } from './table-ine-ch/table-ine-ch.component';
 const routes: Routes = [
   {
     path: '',
@@ -76,6 +77,10 @@ const routes: Routes = [
     path: 'cotizadorVr',
     component: VeracruzComponent
   },
+  {
+    path: 'tableIneCh',
+    component: TableIneChComponent
+  }
 ];
 
 @NgModule({

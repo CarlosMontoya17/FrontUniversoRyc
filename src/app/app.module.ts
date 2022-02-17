@@ -29,6 +29,7 @@ import { CartasComponent } from './componentes/cartas/cartas.component';
 import { ResultadosComponent } from './componentes/resultados/resultados.component';
 import { CotizadorNlComponent } from './componentes/cotizador-nl/cotizador-nl.component';
 import { VeracruzComponent } from './componentes/veracruz/veracruz.component';
+import { TableIneChComponent } from './table-ine-ch/table-ine-ch.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -58,6 +59,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     ResultadosComponent,
     CotizadorNlComponent,
     VeracruzComponent,
+    TableIneChComponent,
   ],
   imports: [
     BrowserModule,
