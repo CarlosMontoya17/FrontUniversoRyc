@@ -68,7 +68,7 @@
             (gridReady)="onGridReady($event)"
               [columnDefs]="columnDefs">
             </ag-grid-angular>
-            <button type="button" class="btn btn-success"  (click)="onBtExport()" style="margin-top: 5px;">Exportar CSV</button>
+            <button type="button" class="btn btn-success" *ngIf="result.rol=='Director'" (click)="onBtExport()" style="margin-top: 5px;">Exportar CSV</button>
           </div>
           <!-- <div class="col-12">
               <div class="card">

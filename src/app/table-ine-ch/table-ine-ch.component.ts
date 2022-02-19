@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { AgGridAngular } from 'ag-grid-angular';
+import { Router } from  "@angular/router";
+import { InitializerService } from  'src/app/servicios/initializer/initializer.service';
 declare function swalLoading():any;
 declare function closeAlert():any;
 declare function swalError(mensaje:any): any;
@@ -26,9 +28,11 @@ export class TableIneChComponent implements OnInit {
   sortingOrder:any;
   overlayLoadingTemplate:any;
   rowData = [];
+  result:any = [];
   searchBy: any;
+  usuario:any = 'Usuario';
 
-  constructor(private databaseService: DatabaseService) {
+  constructor(private databaseService: DatabaseService, private initializerService : InitializerService, private router: Router) {
 
     let AG_GRID_LOCALE_EN = getArray();
     this.localeText = AG_GRID_LOCALE_EN;
@@ -152,8 +156,16 @@ export class TableIneChComponent implements OnInit {
   ngOnInit(): void {
 
   }
+    async init(){
+    var result = await this.initializerService.init();
+    if(result!=null){
+      this.result = result;
+    }else{
+      this.router.navigate(['/login']);
+    }
+    }
 
-
+/*
   init() {
     this.databaseService.getProspectosByCond('si').subscribe((res: any) => {
       this.prospectos = res;
@@ -161,6 +173,7 @@ export class TableIneChComponent implements OnInit {
       console.log(error);
     });
   }
+*/
   onSearch(searchBy:any){
     if (searchBy.length >= 8){
       this.gridApi.showLoadingOverlay();
