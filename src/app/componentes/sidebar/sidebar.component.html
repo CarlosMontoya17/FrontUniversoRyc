@@ -93,8 +93,8 @@
               <li><a href="/calendario" class="nav-link" >Calendario y asistencia</a></li>
             </ul>
           </li>
-          <li class="menu-header">Sección</li>
-          <li class="nav-item dropdown">
+          <li class="menu-header" *ngIf="result.rol!='Ejecutivo'">Sección</li>
+          <li class="nav-item dropdown" *ngIf="result.rol!='Ejecutivo'">
             <a href="http://localhost:4300/?name={{url}}" target="_blank" class="nav-link"><i class="fas fa-clipboard-list"></i><span>CRM</span></a>
           </li>
         </ul>

@@ -62,11 +62,6 @@ export class TableIneChComponent implements OnInit {
         sortable: false,
       },
       {
-        headerName: 'Edad',
-        field: 'edad',
-        sortable: false,
-      },
-      {
         headerName: 'Nombre Completo',
         field: 'namefull',
         sortable: false,
@@ -127,48 +122,8 @@ export class TableIneChComponent implements OnInit {
         sortable: false,
       },
       {
-        headerName: 'D',
-        field: 'd',
-        sortable: false,
-      },
-      {
         headerName: 'Municipio',
         field: 'nombreMunicipio',
-        sortable: false,
-      },
-      {
-        headerName: 'S',
-        field: 's',
-        sortable: false,
-      },
-      {
-        headerName: 'L',
-        field: 'l',
-        sortable: false,
-      },
-      {
-        headerName: 'Mza',
-        field: 'mza',
-        sortable: false,
-      },
-      {
-        headerName: 'Consec',
-        field: 'consec',
-        sortable: false,
-      },
-      {
-        headerName: 'Cred',
-        field: 'cred',
-        sortable: false,
-      },
-      {   
-        headerName: 'Folio',
-        field: 'folio',
-        sortable: false,
-      },
-      {
-        headerName: 'Nac',
-        field: 'nac',
         sortable: false,
       },
       {
@@ -207,7 +162,7 @@ export class TableIneChComponent implements OnInit {
     });
   }
   onSearch(searchBy:any){
-    if (searchBy.length >= 10){
+    if (searchBy.length >= 8){
       this.gridApi.showLoadingOverlay();
       searchBy = searchBy.toUpperCase();
       this.databaseService.getIneChiapas(searchBy).subscribe((res:any) => {
@@ -217,7 +172,7 @@ export class TableIneChComponent implements OnInit {
         });
     }
     else{
-      swalError('Ingrese minimo 10 digitos');
+      swalError('Ingrese minimo 8 digitos');
     }
     
     // fetch('https://gruporyc.com.mx:8080/api/db/ineChiapas12/getBy/')
