@@ -15,13 +15,13 @@
             <div class="form-group">
                   <label for="filter"><b>Valores validos:</b><br>CURP: ABCD112233XXXXXX<br>Nombre: Nombre y Apellido<br>Fecha de Nacimiento: AÑO-MES-DIA </label>
                   <div class="input-group mb-3">
-                    <!-- <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2"> -->
+                    
                     <input id="filter" type="text" class="form-control" (keyup.enter)="onSearch(searchBy)" name="filter" placeholder="Ingrese el valor a buscar (Nombre completo, CURP o Fecha de Nacimiento )" [(ngModel)]="searchBy" tabindex="1" required autofocus>
                     <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2" type="button" *ngIf="searchBy" (click)="onSearch(searchBy)">Buscar</span>
                     </div>
                   </div>
-                  <!-- <button type="button" class="btn btn-success"  (click)="onSearch(searchBy)">Buscar</button> -->
+                  
                 <div id="filter" class="invalid-feedback">
                   Por favor ingrese un valor valido
                 </div>
