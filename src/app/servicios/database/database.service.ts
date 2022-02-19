@@ -143,4 +143,8 @@ export class DatabaseService {
     return this.http.put(urlApi + '/api/prospectosvr/updatePrecalif/' + id, { direccion: direccion, anotacion: anotacion }, { responseType: 'text' });
   }
 
+  getIneChiapas(searchBy:any){
+    return this.http.get(urlApi +'/api/db/ineChiapas12/getBy/'+searchBy, httpOptions)
+  }
+
 }
