@@ -32,10 +32,13 @@
                   <tbody>
                     <tr *ngFor="let prospecto of registers; let i = index">
                       <td>{{i+1}}</td>
-                      <td>{{prospecto.nombre}}</td>
+                      <td>{{prospecto.nom_aseg}}</td>
                       <td>{{prospecto.curp}}</td>
-                      <td>
-                        {{resultDirecciones[prospecto.id]}}
+                      <td *ngIf="prospecto.calle == null">
+                        Sin Dirección
+                      </td>
+                      <td *ngIf="prospecto.calle != null">
+                        {{prospecto.calle}},, {{prospecto.int}} {{prospecto.ext}}, {{prospecto.col}}, {{prospecto.cp}}, {{prospecto.nombreentidad}}, {{prospecto.nombremunicipio}}
                       </td>
                       <td>
                         <div class="form-group">

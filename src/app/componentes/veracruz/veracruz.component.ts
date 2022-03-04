@@ -35,36 +35,17 @@ export class VeracruzComponent implements OnInit {
   getRegisterCotizador(){
     var data = this.result.precalifData.split(",");
     var superior = data[1] - data[2];
+    swalLoading();
     this.databaseService.getRegisterCotizadorVr(data[0], superior).subscribe((res:any) => {
       this.registers = res;
       if(this.registers.length!=0){
-        swalLoading();
+        closeAlert();
       }
-      this.readOnlyNl();
     },(error:any)=> {
       console.log(error)
     });
   }
 
-  readOnlyNl(){
-    for(let i=0; i<this.registers.length; i++){
-      this.databaseService.getDireccionVr(this.registers[i].curp).subscribe((res:any) => {
-        if(res!=null){
-          this.resultDirecciones[this.registers[i].id]= res.calle + " #"+ res.ext + ", " + res.cp.slice(3) + ", " + res.e + ", " + res.m;
-        }else{
-          this.resultDirecciones[this.registers[i].id]= "No se encuentra la dirección";
-        }
-        if(i==this.registers.length-1){
-          closeAlert();
-        }
-      },(error:any)=> {
-        if(i==this.registers.length-1){
-          closeAlert();
-        }
-        this.resultDirecciones[this.registers[i].id]="No se encontro la direccion";
-      });
-    }
-  }
 
   enviarDatos(id:any, link:any, comentarios:any, indice:any){
     if(link && comentarios != undefined){

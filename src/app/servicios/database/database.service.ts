@@ -112,7 +112,7 @@ export class DatabaseService {
   }
 
   getRegisterCotizadorVr(inferior: any, superior: any) {
-    return this.http.get(urlApi + '/api/mainvr/getByRange/' + inferior + "/" + superior, httpOptions);
+    return this.http.get(urlApi + '/api/mainvr/findByRange/' + inferior + "/" + superior, httpOptions);
   }
 
   getDireccion(curp: any) {
