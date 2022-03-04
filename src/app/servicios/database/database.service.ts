@@ -112,7 +112,7 @@ export class DatabaseService {
   }
 
   getRegisterCotizadorVr(inferior: any, superior: any) {
-    return this.http.get(urlApi + '/api/prospectosvr/getByRange/' + inferior + "/" + superior, httpOptions);
+    return this.http.get(urlApi + '/api/mainvr/getByRange/' + inferior + "/" + superior, httpOptions);
   }
 
   getDireccion(curp: any) {
@@ -140,11 +140,23 @@ export class DatabaseService {
   }
 
   putDatosVr(id: any, direccion: any, anotacion: any) {
-    return this.http.put(urlApi + '/api/prospectosvr/updatePrecalif/' + id, { direccion: direccion, anotacion: anotacion }, { responseType: 'text' });
+    return this.http.put(urlApi + '/api/mainvr/updatePrecalif/' + id, { direccion: direccion, anotacion: anotacion }, { responseType: 'text' });
   }
 
   getIneChiapas(searchBy:any){
     return this.http.get(urlApi +'/api/db/ineChiapas12/getBy/'+searchBy, httpOptions)
+  }
+
+  getEnterprises(){
+    return this.http.get(urlApi + '/api/mainch/giveEnterprises/', httpOptions)
+  }
+
+  getMunicipality(){
+    return this.http.get(urlApi + '/api/mainch/giveMunicipality/', httpOptions)
+  }
+
+  getDataPriory(municipio: any, empresa:any, salario:any){
+    return this.http.get(urlApi + '/api/mainch/giveCounts/'+municipio+"/"+empresa+"/"+salario, httpOptions)
   }
 
 }

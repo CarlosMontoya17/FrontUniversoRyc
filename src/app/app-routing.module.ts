@@ -15,6 +15,8 @@ import { ResultadosComponent } from "./componentes/resultados/resultados.compone
 import { CotizadorNlComponent } from './componentes/cotizador-nl/cotizador-nl.component';
 import { VeracruzComponent } from './componentes/veracruz/veracruz.component';
 import { TableIneChComponent } from './table-ine-ch/table-ine-ch.component';
+import { QuoterpriorityComponent } from './componentes/quoterpriority/quoterpriority.component';
+import { QuoterpanelComponent } from './componentes/quoterpanel/quoterpanel.component';
 const routes: Routes = [
   {
     path: '',
@@ -80,7 +82,12 @@ const routes: Routes = [
   {
     path: 'tableIneCh',
     component: TableIneChComponent
+  },
+  {
+    path: 'quoter',
+    component: QuoterpriorityComponent
   }
+
 ];
 
 @NgModule({

@@ -1,0 +1,229 @@
+<div class="main-wrapper">
+    <div class="main-content">
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="article-title text-center">
+                        <h2>CHIAPAS</h2>
+                    </div>
+                    <p>{{result.username}}, Ingresa los datos requeridos</p>
+                    <div id="accordion">
+                        <div class="card">
+                            <div style="background-color: #ECECEC;" class="card-header">
+                                <div class="article-cta">
+                                    <a style="cursor: pointer; color: #5C7AEA;" class="btn btn-link" data-toggle="modal"
+                                        data-target="#munModal">1. {{ municipioSelect }}</a>
+                                    <i class="fa fa-check" *ngIf="municipioSelect != 'Municipio'"></i>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="munModal" tabindex="-1" role="dialog"
+                                aria-labelledby="munModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="munModalLabel">Seleccionar municipio: </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3" *ngIf="state != true">
+                                                <input style="text-transform: uppercase;" type="text"
+                                                    class="form-control" placeholder="Ingresa el nombre municipal"
+                                                    aria-label="nomMun" aria-describedby="basic-addon2"
+                                                    list="municipios" [(ngModel)]="filterMunicipality"
+                                                    (keyup.enter)="filterByOne()">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2"
+                                                        style="cursor: pointer;" (click)="filterByOne()">BUSCAR
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <datalist class="list-group" id="municipios" *ngIf="state == true">
+                                                <a style="color: white;"
+                                                    class="list-group-item list-group-item-action active">
+                                                    <i style="padding:0 7px 0 0; cursor: pointer;"
+                                                        class='fas fa-arrow-left' (click)="back()">&ensp;</i>
+                                                    Resultado:
+                                                </a>
+                                                <option data-dismiss="modal"
+                                                    (click)="setMunicipality(municipily.nombremunicipio)"
+                                                    style="cursor: pointer;"
+                                                    *ngFor="let municipily of municipios | searchFilter: filterMunicipality"
+                                                    class="list-group-item list-group-item-action">
+                                                    {{ municipily.nombremunicipio }}
+                                                </option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div style="background-color: #ECECEC;" class="card-header">
+                                <div class="article-cta">
+                                    <a style="cursor: pointer; color: #5C7AEA;" class="btn btn-link "
+                                        data-toggle="modal" data-target="#entModal">2. {{ empresaSelect }}</a>
+                                    <i class="fa fa-check" *ngIf="empresaSelect != 'Empresa'"></i>
+                                </div>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade" id="entModal" tabindex="-1" role="dialog"
+                                aria-labelledby="entModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="entModalLabel">Seleccionar empresa: </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="input-group mb-3" *ngIf="index != true">
+                                                <input style="text-transform: uppercase;" type="text"
+                                                    class="form-control" placeholder="Ingresa el nombre patronal"
+                                                    aria-label="nomPat" aria-describedby="basic-addon2" list="business"
+                                                    [(ngModel)]="filterEnterprise" (keyup.enter)="filterByTwo()">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text" id="basic-addon2"
+                                                        style="cursor: pointer;" (click)="filterByTwo()">BUSCAR
+                                                    </span>
+                                                </div>
+                                                <button type="button"
+                                                    class="list-group-item list-group-item-action btn-success"
+                                                    (click)="setEnterprise('TODO')" data-dismiss="modal">
+                                                    Seleccionar todas las empresas
+                                                </button>
+                                            </div>
+
+                                            <datalist class="list-group" id="business" *ngIf="index == true">
+                                                <a style="color: white;"
+                                                    class="list-group-item list-group-item-action active">
+                                                    <i style="padding:0 7px 0 0; cursor: pointer;"
+                                                        class='fas fa-arrow-left' (click)="back()">&ensp;</i>
+                                                    Resultado:
+                                                </a>
+                                                <button type="button"
+                                                    class="list-group-item list-group-item-action btn-success"
+                                                    (click)="setEnterprise('TODO')" data-dismiss="modal">
+                                                    Seleccionar todas las empresas
+                                                </button>
+                                                <option data-dismiss="modal" (click)="setEnterprise(empresa.nom_pat)"
+                                                    style="cursor: pointer;"
+                                                    *ngFor="let empresa of business | searchFilter: filterEnterprise"
+                                                    class="list-group-item list-group-item-action">
+                                                    {{ empresa.nom_pat }}
+                                                </option>
+                                            </datalist>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div style="background-color: #ECECEC;" class="card-header" id="headingThree">
+                                <div class="article-cta">
+                                    <a style="cursor: pointer; color: #5C7AEA;" class="btn btn-link"
+                                        data-toggle="collapse" data-target="#collapseSalary" aria-expanded="false"
+                                        aria-controls="collapseSalary">
+                                        3. {{ salarySelect }}</a>
+                                    <i class="fa fa-check" *ngIf="salarySelect != 'Salario'"></i>
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapseSalary">
+                                <div class="card card-body">
+                                    <div class="input-group mb-3">
+                                        <input style="text-transform: uppercase;" type="number" class="form-control"
+                                            placeholder="Ingresa el salario mínimo" [(ngModel)]="filterSalary"
+                                            (keyup.enter)="setSalary()">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text" id="basic-addon2" style="cursor: pointer;"
+                                                data-dismiss="modal" (click)="setSalary()">APLICAR
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="article-cta">
+                        <div class="btn-group" role="group" aria-label="Basic">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#send"
+                                (click)="calculateData()">Siguiente</button>
+                        </div>
+
+                        <div class="modal fade" id="send" tabindex="-1" role="dialog" aria-labelledby="sendModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="sendModalLabel">Resumen: </h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul class="list-group">
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+                                                Municipio:
+                                                <span class="badge badge-danger badge-pill"
+                                                    *ngIf="municipioSelect=='Municipio'"><i
+                                                        class="fas fa-exclamation"></i></span>
+                                                <span class="badge badge-success badge-pill"
+                                                    *ngIf="municipioSelect!='Municipio'"><i
+                                                        class="fa fa-check"></i></span>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+                                                Empresa:
+                                                <span class="badge badge-danger badge-pill"
+                                                    *ngIf="empresaSelect=='Empresa'"><i
+                                                        class="fas fa-exclamation"></i></span>
+                                                <span class="badge badge-success badge-pill"
+                                                    *ngIf="empresaSelect!='Empresa'"><i class="fa fa-check"></i></span>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+                                                Salario:
+                                                <span class="badge badge-danger badge-pill"
+                                                    *ngIf="salarySelect=='Salario'"><i
+                                                        class="fas fa-exclamation"></i></span>
+                                                <span class="badge badge-success badge-pill"
+                                                    *ngIf="salarySelect!='Salario'"><i class="fa fa-check"></i></span>
+                                            </li>
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center" style="background-color: #eaeef1;">
+                                                Resultado:
+
+
+                                                <span class="badge badge-danger badge-pill" *ngIf="ready==false"><i
+                                                        class="fa fa-exclamation">&nbsp;</i><span>Llena todos los
+                                                        campos</span></span>
+                                                <span class="badge badge-success badge-pill" *ngIf="ready==true"><i
+                                                        class="fas fa-grin">&nbsp;</i><span>{{ count }}</span></span>
+                                                <span class="badge badge-primary badge-pill" *ngIf="ready==true"><i
+                                                            class="fas fa-clock">&nbsp;</i><span>Tiempo estimado: {{ timeAprox }} min</span></span>
+                                            </li>
+                                        </ul>
+                                        <div class="border-top my-3"></div>
+                                        <a type="button" class="btn btn-dark" style="color:white; margin-left: 15rem;"
+                                            data-dismiss="modal" aria-label="Close">Cancelar</a>
+                                        <a type="button" class="btn btn-success disabled"
+                                            style="color:white;margin-left: 10px;" *ngIf="ready!=true">Enviar</a>
+                                        <a type="button" class="btn btn-success" style="color:white;margin-left: 10px;"
+                                            *ngIf="ready==true">Enviar</a>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

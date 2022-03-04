@@ -24,12 +24,18 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { CrmComponent } from './componentes/crm/crm.component';
 import { CartasComponent } from './componentes/cartas/cartas.component';
 import { ResultadosComponent } from './componentes/resultados/resultados.component';
 import { CotizadorNlComponent } from './componentes/cotizador-nl/cotizador-nl.component';
 import { VeracruzComponent } from './componentes/veracruz/veracruz.component';
 import { TableIneChComponent } from './table-ine-ch/table-ine-ch.component';
+import { QuoterpriorityComponent } from './componentes/quoterpriority/quoterpriority.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QuoterpanelComponent } from './componentes/quoterpanel/quoterpanel.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { SearchFilterPipe } from './search-filter.pipe';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -60,6 +66,9 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CotizadorNlComponent,
     VeracruzComponent,
     TableIneChComponent,
+    QuoterpriorityComponent,
+    QuoterpanelComponent,
+    SearchFilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -68,8 +77,12 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    Ng2SearchPipeModule
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -3,19 +3,23 @@ import { DatabaseService } from 'src/app/servicios/database/database.service';
 import { AgGridAngular } from 'ag-grid-angular';
 import { Router } from  "@angular/router";
 import { InitializerService } from  'src/app/servicios/initializer/initializer.service';
+import {MatAccordion} from '@angular/material/expansion';
+
 declare function swalLoading():any;
 declare function closeAlert():any;
 declare function swalError(mensaje:any): any;
 declare function getArray():any;
 
 @Component({
-  selector: 'app-table-ine-ch',
-  templateUrl: './table-ine-ch.component.html',
-  styleUrls: ['./table-ine-ch.component.css']
+  selector: 'app-quoterpriority',
+  templateUrl: './quoterpriority.component.html',
+  styleUrls: ['./quoterpriority.component.css']
 })
-export class TableIneChComponent implements OnInit {
-
+export class QuoterpriorityComponent implements OnInit {
+  panelState = false;
   @ViewChild("agGrid", {static:false}) agGrid: AgGridAngular | undefined;
+  @ViewChild(MatAccordion) accordion: MatAccordion | undefined;
+  enterprises:any = [];
   localeText:any;
   prospectos: any = [];
   gridApi:any;
@@ -31,34 +35,11 @@ export class TableIneChComponent implements OnInit {
   result:any = [];
   searchBy: any;
   usuario:any = 'Usuario';
+  componente:any = 'quoter';
 
   constructor(private databaseService: DatabaseService, private initializerService : InitializerService, private router: Router) {
 
-    let AG_GRID_LOCALE_EN = getArray();
-    this.localeText = AG_GRID_LOCALE_EN;
-    let filterParams = {
-    comparator: function (filterLocalDateAtMidnight:any, cellValue:any) {
-      let dateAsString = cellValue;
-      if (dateAsString == null) return -1;
-      let dateParts = dateAsString.split('/');
-      let cellDate = new Date(
-        Number(dateParts[2]),
-        Number(dateParts[1]) - 1,
-        Number(dateParts[0])
-      );
-      if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) {
-        return 0;
-      }
-      if (cellDate < filterLocalDateAtMidnight) {
-        return -1;
-      }
-      if (cellDate > filterLocalDateAtMidnight) {
-        return 1;
-      }
-      return 0;
-      },
-      browserDatePicker: true,
-    };
+   
     this.columnDefs = [
       {
         headerName: 'CVE',
@@ -155,15 +136,23 @@ export class TableIneChComponent implements OnInit {
 
   ngOnInit(): void {
     this.init();
+    this.getEnterprises();
   }
-    async init(){
+  async init(){
     var result = await this.initializerService.init();
     if(result!=null){
       this.result = result;
     }else{
       this.router.navigate(['/login']);
-    }
-    }
+    } 
+  }
+
+  async getEnterprises() {
+    this.databaseService.getEnterprises().subscribe((res: any) => {
+      this.enterprises = res;
+    });
+  }
+
 
 /*
   init() {
@@ -174,6 +163,9 @@ export class TableIneChComponent implements OnInit {
     });
   }
 */
+cambiarComponente(vista:any) {
+  this.componente=vista;
+}
   onSearch(searchBy:any){
     if (searchBy.length >= 8){
       this.gridApi.showLoadingOverlay();
@@ -259,5 +251,5 @@ export class TableIneChComponent implements OnInit {
       }
     }
   }
-}
 
+}

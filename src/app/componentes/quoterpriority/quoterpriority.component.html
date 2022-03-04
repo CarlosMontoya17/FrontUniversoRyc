@@ -1,0 +1,155 @@
+<!-- <div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+      <section class="section">
+        <div class="section-header">
+          <nav aria-label="Page navigation example">
+            <ul class="pagination pagination-lg">
+              <li class="page-item">
+                <h1>Cotizadores</h1>
+              </li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="section-body">
+    
+          <mat-accordion>
+            <mat-expansion-panel (opened)="panelState = true"
+                                 (closed)="panelState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Self aware panel
+                </mat-panel-title>
+                <mat-panel-description>
+                  Currently I am {{panelState ? 'open' : 'closed'}}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <p>I'm visible because I am open</p>
+            </mat-expansion-panel>
+          </mat-accordion>
+              
+        </div>
+      </section>
+    </div>
+  </div> -->
+
+<div class="main-wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-content" *ngIf="componente=='quoter'">
+    <section class="section">
+      <div class="section-header">
+        <nav aria-label="Page navigation example">
+          <ul class="pagination pagination-lg">
+            <li class="page-item">
+              <h1>Cotizador ATM</h1>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="section-body">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-4">
+            <article class="article article-style-c">
+              <div class="article-header">
+                <div class="article-image" style="background-image: url('assets/img/quoters/chiapas.png');">
+                </div>
+              </div>
+              <div class="article-details">
+                <div class="article-title text-center">
+                  <h2>CHIAPAS</h2>
+                </div>
+                <p>Envia tu peticion para cotizar por prioridad</p>
+                <div class="article-details">
+                  <div class="article-cta">
+                    <a style="cursor: pointer; color: white;" class="btn btn-primary"
+                      (click)="cambiarComponente('quoterPanel')">Abrir</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-4">
+            <article class="article article-style-c">
+              <div class="article-header">
+                <div class="article-image" style="background-image: url('assets/img/quoters/veracruz.png');">
+                </div>
+              </div>
+              <div class="article-details">
+                <div class="article-title text-center">
+                  <h2>VERACRUZ</h2>
+                </div>
+                <p>Envia tu peticion para cotizar por prioridad</p>
+                <div class="article-details">
+                  <div class="article-cta">
+                    <a style="cursor: pointer; color: white;" class="btn btn-primary disabled">PROXIMAMENTE</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-12 col-md-4 col-lg-4">
+            <article class="article article-style-c">
+              <div class="article-header">
+                <div class="article-image" style="background-image: url('assets/img/quoters/nuevo-leon.png');">
+                </div>
+              </div>
+              <div class="article-details">
+                <div class="article-title text-center">
+                  <h2>NUEVO LEON</h2>
+                </div>
+                <p>Envia tu peticion para cotizar por prioridad</p>
+                <div class="article-details">
+                  <div class="article-cta">
+                    <a style="cursor: pointer; color: white;" class="btn btn-primary disabled ">PROXIMAMENTE</a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+
+
+
+
+      </div>
+    </section>
+  </div>
+
+  <div *ngIf="componente!='quoter'">
+    <div class="main-wrapper">
+      <div class="main-content">
+
+        <a (click)="cambiarComponente('quoter')"
+          style="cursor: pointer;position: relative;top: 8rem; z-index: 2; margin-left: 1.5rem;width: 200px;">
+          <i class="fas fa-arrow-left fa-2x">
+          </i>
+          <span>
+            Atras
+          </span>
+        </a>
+      </div>
+    </div>
+    <container-element [ngSwitch]="componente">
+      <div *ngSwitchCase="'quoterPanel'">
+        <app-quoterpanel></app-quoterpanel>
+      </div>
+    </container-element>
+  </div>
+  <footer class="main-footer">
+    <div class="footer-left col-md-6">
+      Copyright &copy; 2021 <div class="bullet"></div> Grupo Ryc
+    </div>
+    <div class="footer-right col-md-3">
+      2.3.0
+    </div>
+
+    <div class="col-md-12">
+      Distribuido por <a target="_blank" href="https://gruporyc.com.mx">Grupo Ryc</a>
+    </div>
+  </footer>
+</div>
