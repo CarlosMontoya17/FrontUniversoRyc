@@ -158,5 +158,9 @@ export class DatabaseService {
   getDataPriory(municipio: any, empresa:any, salario:any){
     return this.http.get(urlApi + '/api/mainch/giveCounts/'+municipio+"/"+empresa+"/"+salario, httpOptions)
   }
+  putPriory(username:any, municipio:any ,empresa: any, salario:any){
+    return this.http.put(urlApi + '/api/mainch/prioryData/'+username, {byMun: municipio, byEnterprise: empresa, bySalary: salario} , { responseType: 'text'})
+  }
+
 
 }

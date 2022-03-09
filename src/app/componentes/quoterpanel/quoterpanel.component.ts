@@ -46,9 +46,6 @@ export class QuoterpanelComponent implements OnInit {
     this.init();
     this.getDataMunicipality();
     this.getDataEnterprises();
-    if (this.business != [] && this.municipios != []) {
-      closeAlert();
-    }
   }
 
   async init() {
@@ -70,37 +67,54 @@ export class QuoterpanelComponent implements OnInit {
   }
 
   getDataEnterprises() {
+
     this.databaseService.getEnterprises().subscribe((dat: any) => {
       this.business = dat;
+      closeAlert();
     });
   }
 
   calculateData() {
-    if (this.municipioSelect != "Empresa" && this.empresaSelect != "Municipio" && this.salarySelect != "Salario") {
+    if (this.municipioSelect != "Municipio" && this.empresaSelect != "Empresa" && this.salarySelect != "Salario") {
       this.ready = true;
       swalLoading();
       this.databaseService.getDataPriory(this.municipioSelect, this.empresaSelect, this.salarySelect).subscribe((dat: any) => {
         this.count = dat.count;
-        this.timeAprox = Math.round(this.count*0.18);
-        // if(this.timeAprox > 60){
+        this.timeAprox = Math.round(this.count * 0.18);
+        if (this.timeAprox > 0 && this.timeAprox < 60) {
+          this.prefix = "min";
+          
+        }
+        else if (this.timeAprox > 60 && this.timeAprox < 1440) {
+          this.prefix = "hrs";
+          this.timeAprox = Math.round(this.timeAprox/60);
+        }
+        else if (this.timeAprox > 1440 && this.timeAprox < 10080) {
+          this.prefix = "dias";
+          this.timeAprox = Math.round(this.timeAprox/1440);
+        }
+        else if (this.timeAprox > 10080 && this.timeAprox < 40320) {
+          this.prefix = "sem";
+          this.timeAprox = Math.round(this.timeAprox/10080);
+        }
 
-        // }
         closeAlert();
       });
     }
 
   }
-
-
-  calculateDelivery() {
-    // for (let id in this.raw) {
-    //   this.aplican = this.aplican.concat(this.raw[id].aplica);
-    //   this.precalificados += this.raw[id].precalif;
-
-    // }
-    // console.log(this.aplican);
-    // console.log(this.precalificados);
+ 
+  sendRequest(){
+    swalLoading();
+    this.databaseService.putPriory(this.result.username, this.municipioSelect, this.empresaSelect, this.salarySelect).subscribe((dat: any) =>{
+      closeAlert();
+      swalMixin("success", "Solicitud enviada")
+    }, (error:any) =>{
+      closeAlert();
+      swalMixin("error", "Error de envio")
+    })
     
+
   }
 
 

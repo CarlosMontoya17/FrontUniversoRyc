@@ -204,7 +204,7 @@
                                                 <span class="badge badge-success badge-pill" *ngIf="ready==true"><i
                                                         class="fas fa-grin">&nbsp;</i><span>{{ count }}</span></span>
                                                 <span class="badge badge-primary badge-pill" *ngIf="ready==true"><i
-                                                            class="fas fa-clock">&nbsp;</i><span>Tiempo estimado: {{ timeAprox }} min</span></span>
+                                                            class="fas fa-clock">&nbsp;</i><span>Tiempo estimado: {{ timeAprox }} {{prefix}}</span></span>
                                             </li>
                                         </ul>
                                         <div class="border-top my-3"></div>
@@ -213,7 +213,7 @@
                                         <a type="button" class="btn btn-success disabled"
                                             style="color:white;margin-left: 10px;" *ngIf="ready!=true">Enviar</a>
                                         <a type="button" class="btn btn-success" style="color:white;margin-left: 10px;"
-                                            *ngIf="ready==true">Enviar</a>
+                                            *ngIf="ready==true" (click)="sendRequest()" data-dismiss="modal">Enviar</a>
 
                                     </div>
 
