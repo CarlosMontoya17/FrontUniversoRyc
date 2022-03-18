@@ -17,7 +17,7 @@
               <h4>Derechohabientes Veracruz</h4>
             </div>
               <div class="table-responsive">
-                <table class="table">
+                <table class="table table-hover">
                   <thead>
                     <tr>
                       <th scope="col">No </th>
@@ -26,10 +26,9 @@
                       <th scope="col">Ext</th>
                       <th scope="col">Col</th>
                       <th scope="col">CP</th>
-                      <th scope="col">D</th>
-                      <th scope="col">M</th>
-                      <th scope="col">S</th>
-                      <th scope="col">L</th>
+                      <th scope="col">Distrito</th>
+                      <th scope="col">Seccion</th>
+                      <th scope="col">Localidad</th>
                       <th scope="col">Mza</th>
                       <th scope="col">Municipio</th>
                       <th scope="col">Liga Google Maps</th>
@@ -46,18 +45,17 @@
                       <td>{{prospecto.colonia}}</td>
                       <td>{{prospecto.cp}}</td>
                       <td>{{prospecto.d}}</td>
-                      <td>{{prospecto.m}}</td>
                       <td>{{prospecto.s}}</td>
                       <td>{{prospecto.l}}</td>
                       <td>{{prospecto.mza}}</td>
                       <td>{{prospecto.nombremunicipio}}</td>
                       <td>
-                        <div class="form-group">
+                        <div class="form-group align-self-center">
                           <input  [(ngModel)]="links[prospecto.id]" type="url" class="form-control">
                         </div>
                       </td>
                       <td>
-                        <div class="form-group">
+                        <div class="form-group align-self-center">
                           <textarea [(ngModel)]="comentarios[prospecto.id]" class="form-control"></textarea>
                         </div>
                       </td>
