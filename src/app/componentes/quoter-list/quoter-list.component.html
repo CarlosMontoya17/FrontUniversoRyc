@@ -1,0 +1,154 @@
+<div class="main-wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-content">
+        <div class="section-body">
+            <div class="card">
+                <div class="card-body">
+                    <div class="article-title text-center">
+                        <h2>SEGUIMIENTO DE SOLICITUDES</h2>
+                        <br>
+
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text text-left">
+                                    Da click en un prospecto para volver a cotizarlo.
+                                </p>
+                               
+                                
+                            </div>
+                        </div>
+                        <span id="selectedRows"></span>
+                        <div class="table-responsive">
+                            <ag-grid-angular style="width: 100%; height: 500px;" class="ag-theme-balham"
+                            #agGrid
+                            class="ag-theme-alpine"
+                            [pagination]="true"
+                            [rowData]="rowData"
+                            [rowSelection]="rowSelection"
+                            
+                            [defaultColDef]="defaultColDef"
+                            [defaultColGroupDef]="defaultColGroupDef"
+                            [animateRows]="true"
+                            [columnHoverHighlight]="true"
+                            [localeText]="localeText"
+                                             [overlayLoadingTemplate]="overlayLoadingTemplate"
+                            (selectionChanged)="onSelectionChanged($event)"
+                            [sortingOrder]="sortingOrder"
+                            (gridReady)="onGridReady($event)"
+                              [columnDefs]="columnDefs">
+                            
+                            </ag-grid-angular>  
+                          </div>
+                        
+                          <button type="button" class="btn btn-success" style="margin-top: 5px;">Volver a cotizar seleccionados</button>
+
+
+                        <div class="input-group mb-3">
+                            <input id="filter" type="text" class="form-control" name="filter"
+                                placeholder="Ingrese el valor a buscar" [(ngModel)]="searchBy" tabindex="1" required
+                                autofocus>
+                        </div>
+
+                        
+                        <div class="table-responsive">
+                            <table class="table table-sm table-striped table-hover">
+                                <thead>
+                                    <tr class="bg-danger text-white ">
+                                        <th scope="col" class="align-middle">#</th>
+                                        <th scope="col" class="align-middle">NOMBRE</th>
+                                        <th scope="col" class="align-middle">MUNICIPIO</th>
+                                        <th scope="col" class="align-middle">EMPRESA</th>
+                                        <th scope="col" class="align-middle">APLICA</th>
+                                        <th scope="col" class="align-middle">EXCEPCION</th>
+                                        <th scope="col" class="align-middle">LINEA 4</th>
+                                        <th scope="col" class="align-middle">LINEA 2</th>
+                                        <th scope="col" class="align-middle">D. MENSUAL</th>
+                                        <th scope="col" class="align-middle">INFO</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let prospecto of list | searchFilter: searchBy | paginate: { itemsPerPage: 20, currentPage: p }  ; let i = index "
+                                        [attr.data-index]="i" data-toggle="modal" data-target="#ModalCenter"
+                                        (click)="setValue(prospecto.id)" style="cursor: pointer;">
+                                        <th scope="row" class="align-middle"> {{ i+1 }} </th>
+                                        <td class="text-center align-middle">
+                                            {{ prospecto.nom_aseg }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ prospecto.nombremunicipio }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ prospecto.nom_pat }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ prospecto.aplica }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            {{ prospecto.excepcion }}
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span
+                                                *ngIf="prospecto.montolinea4!=null && prospecto.montolinea4!='null'">{{
+                                                prospecto.montolinea4 }}</span>
+
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span
+                                                *ngIf="prospecto.montolinea2!=null && prospecto.montolinea2!='null'">{{
+                                                prospecto.montolinea2 }}</span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span
+                                                *ngIf="prospecto.descmensual!=null && prospecto.descmensual!='null'">{{
+                                                prospecto.descmensual }}</span>
+                                        </td>
+                                        <td class="text-center align-middle">
+                                            <span class="badge badge-warning badge-pill"
+                                                *ngIf="prospecto.aplica == 'null' || prospecto.aplica == null">
+                                                <i class="fas fa-sync"></i>
+                                            </span>
+                                            <span class="badge badge-success badge-pill"
+                                                *ngIf="prospecto.aplica != 'null' && prospecto.aplica != null">
+                                                <i class="fa fa-check"></i>
+                                            </span>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+                        </div>
+                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="ModalCenter" tabindex="-1" role="dialog"
+                            aria-labelledby="ModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">
+                                            ¿Quieres volver a cotizar al prospecto?
+                                        </h5>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <a type="button" class="btn btn-dark" style="color:white; margin-left: 5%;"
+                                            data-dismiss="modal" aria-label="Close">Cancelar</a>
+
+                                        <a type="button" class="btn btn-success" style="color:white;margin-left: 10px;"
+                                            data-dismiss="modal" (click)="requoter()">Enviar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

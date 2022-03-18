@@ -139,8 +139,8 @@ export class DatabaseService {
     return this.http.get(urlApi + '/api/prospectosvr/getProspectVR/', httpOptions);
   }
 
-  putDatosVr(id: any, direccion: any, anotacion: any) {
-    return this.http.put(urlApi + '/api/mainvr/updatePrecalif/' + id, { direccion: direccion, anotacion: anotacion }, { responseType: 'text' });
+  putDatosVr(id: any, direccion: any, anotacion: any, username:any) {
+    return this.http.put(urlApi + '/api/mainvr/updatePrecalif/' + id, { liga: direccion, anotacion: anotacion, pastedby: username }, { responseType: 'text' });
   }
 
   getIneChiapas(searchBy:any){
@@ -158,8 +158,18 @@ export class DatabaseService {
   getDataPriory(municipio: any, empresa:any, salario:any){
     return this.http.get(urlApi + '/api/mainch/giveCounts/'+municipio+"/"+empresa+"/"+salario, httpOptions)
   }
+  getPrioryList(username: any){
+    return this.http.get(urlApi + '/api/mainch/getPriorityList/'+username, httpOptions)
+  }
+
+
+
+
   putPriory(username:any, municipio:any ,empresa: any, salario:any){
     return this.http.put(urlApi + '/api/mainch/prioryData/'+username, {byMun: municipio, byEnterprise: empresa, bySalary: salario} , { responseType: 'text'})
+  }
+  reloadPriory(id:any, username:any){
+    return this.http.put(urlApi + '/api/mainch/reloadPriory/'+id, {username: username}, {responseType: 'text'})
   }
 
 

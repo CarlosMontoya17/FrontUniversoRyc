@@ -36,6 +36,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QuoterpanelComponent } from './componentes/quoterpanel/quoterpanel.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { SearchFilterPipe } from './search-filter.pipe';
+import { QuoterListComponent } from './componentes/quoter-list/quoter-list.component';
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -69,6 +70,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     QuoterpriorityComponent,
     QuoterpanelComponent,
     SearchFilterPipe,
+    QuoterListComponent,
   ],
   imports: [
     BrowserModule,

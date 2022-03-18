@@ -16,7 +16,7 @@ import { CotizadorNlComponent } from './componentes/cotizador-nl/cotizador-nl.co
 import { VeracruzComponent } from './componentes/veracruz/veracruz.component';
 import { TableIneChComponent } from './table-ine-ch/table-ine-ch.component';
 import { QuoterpriorityComponent } from './componentes/quoterpriority/quoterpriority.component';
-import { QuoterpanelComponent } from './componentes/quoterpanel/quoterpanel.component';
+import { QuoterListComponent } from './componentes/quoter-list/quoter-list.component'
 const routes: Routes = [
   {
     path: '',
@@ -86,6 +86,10 @@ const routes: Routes = [
   {
     path: 'quoter',
     component: QuoterpriorityComponent
+  },
+  {
+    path: 'quoterList',
+    component: QuoterListComponent 
   }
 
 ];

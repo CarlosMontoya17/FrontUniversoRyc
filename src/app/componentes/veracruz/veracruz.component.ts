@@ -49,7 +49,8 @@ export class VeracruzComponent implements OnInit {
 
   enviarDatos(id:any, link:any, comentarios:any, indice:any){
     if(link && comentarios != undefined){
-        this.databaseService.putDatosVr(id, link, comentarios).subscribe((res:any) => {
+      const username = this.result.username;
+        this.databaseService.putDatosVr(id, link, comentarios, username).subscribe((res:any) => {
        this.registers.splice(indice, 1);
        swalOk("Guardado correctamente");
     },(error:any)=> {

@@ -1,0 +1,67 @@
+ .table-hover tbody tr td, .table-hover tbody tr th {
+    -webkit-transition: background-color 250ms linear;
+    -moz-transition: background-color 250ms linear;
+    -o-transition: background-color 250ms linear;
+    -ms-transition: background-color 250ms linear;
+    transition: background-color 250ms linear;
+  }
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #d6d6d6;
+    -webkit-transition: background-color 100ms linear;
+    -moz-transition: background-color 100ms linear;
+    -o-transition: background-color 100ms linear;
+    -ms-transition: background-color 100ms linear;
+    transition: background-color 100ms linear;
+    color: black;
+  }
+
+
+  .cell-act {
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.cell-bud {
+    background: rgba(0, 255, 0, 0.1);
+}
+
+.legend-box {
+    display: inline-block;
+    border: 1px solid black;
+    width: 12px;
+    height: 12px;
+}
+
+.test-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .test-header {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(44 48 72);
+  }
+.form-control{
+    text-transform: uppercase;
+}
+.input-group-text{
+    user-select: none;
+    color: white;
+    box-shadow: inherit;
+    background: rgb(71, 195, 99);
+}
+
+.modal-header{
+  align-items: center;
+  margin-left: 15%;
+  text-align: center;
+}
